@@ -1,19 +1,11 @@
 <x-layout>
-    <x-slot name="content">
-        @foreach($posts as $post)
-            <article>
-                <h1>
-                    <a href="/post/{{$post->slug}}" ?>
-                        {{$post->title}}
-                    </a>
-                </h1>
-                <p>
-                    <a href="/categories/{{$post->category->slug}}">{{$post->category->name}}</a>
-                </p>
-                <div>
-                    {{$post->excerpt}}
-                </div>
-            </article>
-        @endforeach
-    </x-slot>
+
+    @include('partials._posts-header')
+
+    <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
+
+        <x-posts-gride :posts="$posts"/>
+
+    </main>
+
 </x-layout>
