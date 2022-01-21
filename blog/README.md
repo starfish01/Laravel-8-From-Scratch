@@ -1,1 +1,1 @@
-https://laracasts.com/series/laravel-8-from-scratch/episodes/46
+https://laracasts.com/series/laravel-8-from-scratch/episodes/50

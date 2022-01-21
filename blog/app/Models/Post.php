@@ -18,6 +18,16 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function setPasswordAttribute($password)
+    {
+        $this->attribute['password'] = bycrpt($password);
+    }
+
+    public function getUsernameAttribute($username)
+    {
+        return ucwords($username);
+    }
+
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');

@@ -16,15 +16,20 @@ class RegistrerController extends Controller
 
     public function store()
     {
-        $arributes = request()->validate([
+
+        $attributes = request()->validate([
             'name' => 'required|max:255',
-            'username' => 'required|max:255|min:3',
-            'email' => 'required|email|max:255',
+            'username' => 'required|max:255|min:3|unique:users,username',
+            'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|min:3|max:255',
         ]);
 
-        User::create($arributes);
+        $user = User::create($attributes);
 
-        return redirect('/');
+//        session()->flash('success', 'Your account has been created');
+
+        auth()->login($user);
+
+        return redirect('/')->with('success', 'Your account has been created');
     }
 }

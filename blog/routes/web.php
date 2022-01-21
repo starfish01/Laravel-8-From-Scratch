@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegistrerController;
+use App\Http\Controllers\SessionController;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
@@ -22,8 +23,9 @@ Route::get('/', [PostController::class, 'index'])->name('home');
 
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
-Route::get('register', [RegistrerController::class, 'create']);
-Route::post('register', [RegistrerController::class, 'store']);
+Route::get('register', [RegistrerController::class, 'create'])->middleware('guest');
+Route::post('register', [RegistrerController::class, 'store'])->middleware('guest');
+Route::post('logout', [SessionController::class, 'destroy']);
 
 //Route::get('authors/{author:username}', function (User $author) {
 //    return view('posts.index', [
